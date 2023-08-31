@@ -1,12 +1,17 @@
 message Transfer {
     queryId: Int;
     new_owner: Address;
+    url: String;
 }
 message SetReward {
     reward: Int;
 }
 
 message UpdateUrl {
+    url: String;
+}
+
+message Mint {
     url: String;
 }
 

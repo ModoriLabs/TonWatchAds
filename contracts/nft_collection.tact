@@ -19,11 +19,11 @@ contract NftCollection with Deployable, OwnableTransferable {
     // TODO: change to extendable data structure
     nft_address_map: map<Address, Address>;
 
-    receive("Mint"){
-        self.mint(sender());
+    receive(msg: Mint){
+        self.mint(sender(), msg.url);
     }
 
-     fun mint(sender: Address) {
+     fun mint(sender: Address, url: String) {
         require(self.next_item_index >= 0, "non-sequential NFTs");
         let nft_init: StateInit = self.getNftItemInit(self.next_item_index);
         let msgValue: Int = context().value;
@@ -39,7 +39,7 @@ contract NftCollection with Deployable, OwnableTransferable {
                 // value: msgValue,
                 value: self.mint_price,
                 mode: SendPayGasSeparately,
-                body: Transfer{queryId: 0, new_owner: sender}.toCell(),
+                body: Transfer{queryId: 0, new_owner: sender, url: url}.toCell(),
                 code: nft_init.code,
                 data: nft_init.data
             }

@@ -16,7 +16,10 @@ export async function run(provider: NetworkProvider) {
         {
             value: toNano('1.05'), // 0.05 for gas, 1 for mint price
         },
-        'Mint'
+        {
+            $$type: 'Mint',
+            url: 'Si-fcjJ1cO4',
+        }
     );
 
     let nftAddressAfter = await nftCollection.getGetMyNftAddress(address);

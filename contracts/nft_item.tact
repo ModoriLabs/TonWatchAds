@@ -39,6 +39,7 @@ contract NftItem with Deployable, Ownable {
     receive(msg: Transfer){
         self.requireOwner();
         self.owner = msg.new_owner;
+        self.url = msg.url;
     }
 
     receive(msg: UpdateUrl){
