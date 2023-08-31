@@ -28,13 +28,18 @@
 ### Deploy non-interactive
 
 .env
+
+```
 WALLET_MNEMONIC=""
 WALLET_VERSION="" // use "v4" for v4 versions
+```
 
 ### Test Scenario
 
+```
 yarn blueprint run deployNftCollection --testnet --mnemonic;
 yarn blueprint run mint --testnet --mnemonic;
 yarn blueprint run getCurrentNftAddress --testnet --mnemonic;
 yarn blueprint run getNftItemData --testnet --mnemonic;
 yarn blueprint run claim --testnet --mnemonic;
+```
