@@ -9,7 +9,8 @@ contract NftCollection with Deployable, OwnableTransferable {
     owner: Address;
     current_nft_address: Address;
     next_item_index: Int as uint32 = 0;
-    mint_price: Int = ton("0.01");
+    // TODO:  set mint price
+    mint_price: Int = ton("1");
     init(){
         self.owner = sender();
         self.current_nft_address = newAddress(0, 0);
@@ -24,6 +25,8 @@ contract NftCollection with Deployable, OwnableTransferable {
         require(self.next_item_index >= 0, "non-sequential NFTs");
         let nft_init: StateInit = self.getNftItemInit(self.next_item_index);
         let msgValue: Int = context().value;
+        require(msgValue >= self.mint_price, "not enough value");
+
         let tonBalanceBeforeMsg: Int = myBalance() - msgValue;
         let storageFee: Int = self.minTonForStorage - min(tonBalanceBeforeMsg, self.minTonForStorage);
         msgValue = msgValue - storageFee + self.gasConsumption;
@@ -48,8 +51,7 @@ contract NftCollection with Deployable, OwnableTransferable {
     fun getNftItemInit(item_index: Int): StateInit {
         // !FATAL: if url is "" then orbs rpc cannot parse data it returns 500 error
         let base_url: String = "https://ton.org/dev";
-        // !HACK: set reward as 0.05TON
-        return initOf NftItem(myAddress(), myAddress(), item_index, base_url, ton("0.01"));
+        return initOf NftItem(myAddress(), myAddress(), item_index, base_url, ton("0.1"));
     }
 
     get fun get_nft_address_by_index(item_index: Int): Address {

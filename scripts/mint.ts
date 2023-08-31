@@ -14,7 +14,7 @@ export async function run(provider: NetworkProvider) {
     await nftCollection.send(
         provider.sender(),
         {
-            value: toNano('0.1'), // 0.1 TON TODO: Set 1 TON in hackathon
+            value: toNano('1.05'), // 0.05 for gas, 1 for mint price
         },
         'Mint'
     );
