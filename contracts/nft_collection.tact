@@ -42,8 +42,6 @@ contract NftCollection with Deployable, OwnableTransferable {
         self.next_item_index = self.next_item_index + 1;
 
         self.current_nft_address = address;
-        dump(sender);
-        dump(address);
         self.nft_address_map.set(sender(), address);
     }
 

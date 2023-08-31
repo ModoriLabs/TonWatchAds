@@ -7,6 +7,4 @@ export async function run(provider: NetworkProvider) {
 
     const address = await nftCollection.getGetCurrentNftAddress();
     console.log('address', address);
-
-    // run methods on `nftCollection`
 }
