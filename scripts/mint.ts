@@ -29,6 +29,4 @@ export async function run(provider: NetworkProvider) {
     console.log('Mint Success');
     console.log('nftAddressBefore', nftAddressBefore);
     console.log('nftAddressAfter', nftAddressAfter);
-
-    // run methods on `nftCollection`
 }

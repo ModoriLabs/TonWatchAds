@@ -5,13 +5,7 @@ import { NftCollection } from '../wrappers/NftCollection';
 
 export async function run(provider: NetworkProvider) {
     const nftCollection = provider.open(await NftCollection.fromInit());
-    // const nftCollectionAddress = 'EQAmE-pE5S7oBLRTDVHK5rTyz_OM43Pf7FgxEcbi-vomWr_F';
     const url = 'https://www.google.com';
-
-    // if (!nftCollectionAddress) {
-    //     return;
-    // }
-    // const nftCollection = provider.open(await NftCollection.fromAddress(Address.parse(nftCollectionAddress)));
     const ownerAddress = provider.sender().address;
     if (!ownerAddress) {
         return;
