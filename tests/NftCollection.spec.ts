@@ -1,20 +1,20 @@
 import { Blockchain, SandboxContract } from '@ton-community/sandbox';
 import { toNano } from 'ton-core';
-import { TonWatchAds } from '../wrappers/TonWatchAds';
+import { NftCollection } from '../wrappers/NftCollection';
 import '@ton-community/test-utils';
 
-describe('TonWatchAds', () => {
+describe('NftCollection', () => {
     let blockchain: Blockchain;
-    let tonWatchAds: SandboxContract<TonWatchAds>;
+    let nftCollection: SandboxContract<NftCollection>;
 
     beforeEach(async () => {
         blockchain = await Blockchain.create();
 
-        tonWatchAds = blockchain.openContract(await TonWatchAds.fromInit());
+        nftCollection = blockchain.openContract(await NftCollection.fromInit());
 
         const deployer = await blockchain.treasury('deployer');
 
-        const deployResult = await tonWatchAds.send(
+        const deployResult = await nftCollection.send(
             deployer.getSender(),
             {
                 value: toNano('0.05'),
@@ -27,7 +27,7 @@ describe('TonWatchAds', () => {
 
         expect(deployResult.transactions).toHaveTransaction({
             from: deployer.address,
-            to: tonWatchAds.address,
+            to: nftCollection.address,
             deploy: true,
             success: true,
         });
@@ -35,6 +35,6 @@ describe('TonWatchAds', () => {
 
     it('should deploy', async () => {
         // the check is done inside beforeEach
-        // blockchain and tonWatchAds are ready to use
+        // blockchain and nftCollection are ready to use
     });
 });
