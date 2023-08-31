@@ -20,14 +20,14 @@ contract NftItem with Deployable, Ownable {
     }
 
     receive("Claim") {
-        // SendRemainingValue: for excess
+        // SendPayGasSeparately: for excess
         let amount: Int = min(self.reward, myBalance() - context().value);
 
         send(SendParameters{
             to: sender(),
             bounce: true,
-            value: self.reward,
-            mode: SendRemainingValue 
+            value: amount,
+            mode: SendPayGasSeparately 
         });
     }
 
