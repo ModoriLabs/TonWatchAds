@@ -24,3 +24,9 @@
 ### Add a new contract
 
 `npx blueprint create ContractName` or `yarn blueprint create ContractName`
+
+### Deploy non-interactive
+
+.env
+WALLET_MNEMONIC=""
+WALLET_VERSION="" // use "v4" for v4 versions
