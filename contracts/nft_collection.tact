@@ -48,8 +48,8 @@ contract NftCollection with Deployable, OwnableTransferable {
     fun getNftItemInit(item_index: Int): StateInit {
         // !FATAL: if url is "" then orbs rpc cannot parse data it returns 500 error
         let base_url: String = "https://ton.org/dev";
-        let reward: Int = 0;
-        return initOf NftItem(myAddress(), myAddress(), item_index, base_url, reward);
+        // !HACK: set reward as 0.05TON
+        return initOf NftItem(myAddress(), myAddress(), item_index, base_url, ton("0.01"));
     }
 
     get fun get_nft_address_by_index(item_index: Int): Address {

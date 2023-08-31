@@ -8,7 +8,8 @@ contract NftItem with Deployable, Ownable {
     collection_address: Address;
     item_index: Int as uint32;
     url: String;
-    reward: Int;
+    reward: Int as coins; // range 0 to 2^120 - 1 (takes 120 bit = 15 bytes)
+
 
     init(owner: Address, collection_address: Address, item_index: Int, url: String, reward: Int){
         self.owner = owner;
