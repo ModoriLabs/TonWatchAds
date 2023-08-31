@@ -15,6 +15,8 @@ contract NftCollection with Deployable, OwnableTransferable {
         self.owner = sender();
         self.current_nft_address = newAddress(0, 0);
     }
+
+    // TODO: change to extendable data structure
     nft_address_map: map<Address, Address>;
 
     receive("Mint"){
